@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { RouterLink } from "vue-router";
 
 const user = computed(() => AppState.user)
 const account = computed(() => AppState.account)
@@ -35,6 +36,11 @@ async function logout() {
                 Manage Account
               </div>
             </router-link>
+            <RouterLink v-if="account" :to="{ name: 'Profile', params: { profileId: account.id } }">
+              <div class="list-group-item dropdown-item list-group-item-action">
+                View Profile
+              </div>
+            </RouterLink>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout

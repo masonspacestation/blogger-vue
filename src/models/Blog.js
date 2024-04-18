@@ -1,3 +1,4 @@
+import { Account } from "./Account.js"
 
 
 
@@ -11,11 +12,11 @@ export class Blog {
     this.imgUrl = data.imgUrl
     this.tags = data.tags
 
-    this.published = data.published
-    this.createdAt = data.createdAt
-    this.updatedAt = data.updatedAt
+    this.published = new Date(data.published)
+    this.createdAt = new Date(data.createdAt)
+    this.updatedAt = new Date(data.updatedAt)
 
-    this.creator = data.creator
+    this.creator = new Account(data.creator)
     this.creatorId = data.creatorId
   }
 }
