@@ -14,7 +14,6 @@ class BlogsService {
     AppState.blogs = blogs
     console.log(AppState.blogs);
   }
-
 }
 
 
