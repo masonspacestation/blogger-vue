@@ -8,6 +8,9 @@ import { Modal } from "bootstrap";
 
 
 class BlogsService {
+  postNewBlog() {
+    throw new Error("Method not implemented.");
+  }
   async getProfileBlogs(profileId) {
     AppState.profileBlogs = []
     const response = await api.get(`api/blogs?creatorId=${profileId}`)
@@ -16,6 +19,7 @@ class BlogsService {
     AppState.profileBlogs = profileBlogs
   }
   async setActiveBlog(blogId) {
+    AppState.activeBlog = null
     const response = await api.get(`api/blogs/${blogId}`)
     const activeBlog = new Blog(response.data)
     AppState.activeBlog = activeBlog

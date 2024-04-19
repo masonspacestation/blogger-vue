@@ -7,6 +7,7 @@ import { AppState } from "../AppState.js";
 import { blogsService } from "../services/BlogsService.js";
 import BlogCard from "../components/BlogCard.vue";
 import { Modal } from "bootstrap";
+import BlogModal from "../components/BlogModal.vue";
 
 
 const route = useRoute()
@@ -38,6 +39,19 @@ async function getProfileBlogs() {
   }
 }
 
+function writeNewBlog() {
+
+}
+
+async function postNewBlog() {
+  try {
+    await blogsService.postNewBlog()
+  }
+  catch (error) {
+    Pop.toast('Sadly, could not post new blog', 'error');
+  }
+}
+
 </script>
 
 
@@ -50,6 +64,7 @@ async function getProfileBlogs() {
       <div class="col-8 p-4">
         <h2>{{ profile.name }}</h2>
         <p>{{ profile.bio }}</p>
+        <button @click="writeNewBlog()" class="btn btn-outline-success"><i class="mdi mdi-plus"></i>New Post</button>
       </div>
     </div>
     <div class="row">
@@ -59,6 +74,7 @@ async function getProfileBlogs() {
       </div>
     </div>
   </section>
+  <BlogModal />
 </template>
 
 
